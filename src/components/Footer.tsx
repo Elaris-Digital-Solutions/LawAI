@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
             <div className="flex items-center mb-6">
-              <img src="/public/assets/logo-fondo-transparente.png" alt="LawAI Logo" className="w-40 h-40 object-contain"/>
+              <img src="./assets/logo-fondo-transparente.png" alt="LawAI Logo" className="w-40 h-40 object-contain"/>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">
               Empoderando a los profesionales del derecho con tecnología de inteligencia artificial de vanguardia.
