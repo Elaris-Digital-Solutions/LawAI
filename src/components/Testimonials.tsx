@@ -1,4 +1,5 @@
 import { Star, Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const testimonials = [
   {
@@ -34,6 +35,12 @@ const trustedBy = [
 ];
 
 export default function Testimonials() {
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -78,23 +85,31 @@ export default function Testimonials() {
           ))}
         </div>
 
-        <div className="border-t border-gray-200 pt-12">
-          <div className="text-center mb-8">
-            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
-              Con la Confianza de Firmas Líderes
-            </p>
+        <motion.div
+          id="features"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="border-t border-gray-200 pt-12">
+            <div className="text-center mb-8">
+              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+                Con la Confianza de Firmas Líderes
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+              {trustedBy.map((firm, index) => (
+                <div
+                  key={index}
+                  className="text-center text-gray-400 font-semibold text-sm hover:text-[#2F80ED] transition-all duration-300 cursor-default transform hover:scale-105"
+                >
+                  {firm}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-            {trustedBy.map((firm, index) => (
-              <div
-                key={index}
-                className="text-center text-gray-400 font-semibold text-sm hover:text-[#2F80ED] transition-all duration-300 cursor-default transform hover:scale-105"
-              >
-                {firm}
-              </div>
-            ))}
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
