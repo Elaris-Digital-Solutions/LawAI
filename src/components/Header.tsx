@@ -21,8 +21,7 @@ export default function Header() {
   return (
     <motion.header
       style={{
-        backgroundColor: 'rgba(255, 255, 255, var(--bg-opacity))',
-        '--bg-opacity': bgOpacity,
+        backgroundColor: bgOpacity && `rgba(255, 255, 255, ${bgOpacity.get()})`,
         boxShadow: shadow,
       }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-gray-200"
@@ -33,12 +32,9 @@ export default function Header() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center gap-3"
+            className="flex items-center"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-[#0A2342] to-[#2F80ED] rounded-lg flex items-center justify-center shadow-lg">
-              <BookOpen className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-[#0A2342]">LawAI</span>
+            <img src="assets/logo-fondo-transparente.png" alt="LawAI Logo" className="h-12 w-auto object-contain" />
           </motion.div>
 
           <motion.nav
