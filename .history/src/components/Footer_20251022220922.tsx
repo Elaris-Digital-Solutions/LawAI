@@ -6,8 +6,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
-            <div className="flex items-center mb-6">
-              <img src="assets/logo-fondo-transparente.png" alt="LawAI Logo" className="w-40 h-40 object-contain"/>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#2F80ED] to-[#1e5cb8] rounded-lg flex items-center justify-center">
+                <BookOpen className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold">LawAI</span>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">
               Empoderando a los profesionales del derecho con tecnología de inteligencia artificial de vanguardia.
