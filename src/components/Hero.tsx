@@ -15,6 +15,11 @@ export default function Hero() {
     visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
   };
 
+  const pVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, staggerChildren: 0.05 } },
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-[#0A2342] via-[#0d2d52] to-[#0A2342] text-white overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9nPjwvc3ZnPg==')] opacity-30"></div>
@@ -36,16 +41,16 @@ export default function Hero() {
               Tu Asistente Legal de IA
             </h1>
 
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+            <motion.p className="text-xl text-gray-300 mb-8 leading-relaxed" variants={pVariants}>
               Empoderando a los abogados con automatización inteligente y conocimientos legales en tiempo real.
               Transforme su práctica legal con inteligencia artificial de vanguardia.
-            </p>
+            </motion.p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.button 
-                whileHover={{ scale: 1.05, boxShadow: '0px 10px 20px rgba(47, 128, 237, 0.4)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0px 10px 20px rgba(47, 128, 237, 0.4)', backgroundColor: '#2570d9' }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#2F80ED] hover:bg-[#2570d9] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#2F80ED]/30">
+                className="bg-[#2F80ED] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#2F80ED]/30">
                 Comenzar
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
@@ -83,8 +88,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-tr from-[#2F80ED]/20 to-transparent rounded-3xl blur-3xl"></div>
             <motion.div
               className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl"
-              animate={{ y: [-5, 5] }}
-              transition={{ repeat: Infinity, repeatType: 'reverse', duration: 3 }}
+              animate={{ y: [-5, 5], rotate: [0, 1, 0] }}
+              transition={{ repeat: Infinity, repeatType: 'reverse', duration: 5 }}
             >
               <div className="space-y-4">
                 <div className="bg-white/10 rounded-lg p-4 animate-pulse-slow">
