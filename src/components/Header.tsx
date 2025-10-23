@@ -1,4 +1,4 @@
-import { BookOpen, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
@@ -34,7 +34,7 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <img src="/public/assets/logo-fondo-transparente.png" alt="LawAI Logo" className="h-12 w-auto object-contain" />
+            <img src="/LawAI/assets/logo-fondo-transparente.png" alt="LawAI Logo" className="h-12 w-auto object-contain" />
           </motion.div>
 
           <motion.nav
