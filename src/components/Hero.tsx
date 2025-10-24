@@ -110,10 +110,10 @@ export default function Hero() {
 
             <motion.h1 
               variants={itemVariants}
-              className="text-5xl md:text-7xl font-bold leading-tight"
+              className="text-5xl md:text-7xl font-bold leading-loose"
             >
               <span className="block">Revoluciona tu</span>
-              <span className="block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent animate-gradient-x">
+              <span className="block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent animate-gradient-x pb-4">
                 Práctica Legal
               </span>
             </motion.h1>

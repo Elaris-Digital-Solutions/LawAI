@@ -99,7 +99,7 @@ export default function Features() {
             </span>
           </motion.div>
           
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 md:leading-snug">
             Herramientas Poderosas para
             <span className="block mt-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Profesionales Legales Modernos

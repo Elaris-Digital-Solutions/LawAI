@@ -108,7 +108,7 @@ export default function Nosotros() {
             Sobre Nosotros
           </motion.span>
           
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 md:leading-snug">
             Construyendo el Futuro de la
             <span className="block mt-2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Tecnología Legal

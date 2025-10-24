@@ -2,9 +2,18 @@ import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
+const navLinks = [
+  { href: '#features', label: 'Funcionalidades' },
+  { href: '#how-it-works', label: 'Cómo Funciona' },
+  { href: '#testimonios', label: 'Testimonios' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contact', label: 'Contacto' },
+];
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -13,6 +22,40 @@ export default function Header() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navLinks.map(it => it.href.substring(1));
+    const sections = sectionIds.map(id => document.getElementById(id));
+    const headerHeight = 100; 
+
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY;
+      let newActiveSection = '';
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop - headerHeight <= scrollPosition) {
+          newActiveSection = `#${section.id}`;
+          break;
+        }
+      }
+
+      if (scrollPosition < 200) {
+        newActiveSection = '';
+      }
+
+      if ((window.innerHeight + scrollPosition) >= document.body.offsetHeight - 50) {
+        newActiveSection = `#${sectionIds[sectionIds.length - 1]}`;
+      }
+
+      setActiveSection(newActiveSection);
+    };
+
+    window.addEventListener('scroll', handleScrollSpy);
+    handleScrollSpy();
+
+    return () => window.removeEventListener('scroll', handleScrollSpy);
   }, []);
 
   const backgroundColor = useTransform(
@@ -58,7 +101,7 @@ export default function Header() {
             <motion.img 
               src={isScrolled ? "assets/logo-fondo-transparente.png" : "assets/logo-fondo-azul.png"}
               alt="LawAI Logo" 
-              className="h-12 w-auto object-contain transition-all duration-500"
+              className={`w-auto object-contain transition-all duration-500 ${isScrolled ? 'h-12' : 'h-14'}`}
               style={{ filter: isScrolled ? 'none' : 'drop-shadow(0 0 8px rgba(47, 128, 237, 0.3))' }}
             />
           </motion.div>
@@ -69,13 +112,7 @@ export default function Header() {
             variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
             className="hidden md:flex items-center gap-8"
           >
-            {[
-              { href: '#features', label: 'Funcionalidades' },
-              { href: '#how-it-works', label: 'Cómo Funciona' },
-              { href: '#testimonios', label: 'Testimonios' },
-              { href: '#nosotros', label: 'Nosotros' },
-              { href: '#contact', label: 'Contacto' },
-            ].map((item) => (
+            {navLinks.map((item) => (
               <motion.a
                 key={item.href}
                 href={item.href}
@@ -87,7 +124,7 @@ export default function Header() {
               >
                 {item.label}
                 <motion.span
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300 ${activeSection === item.href ? 'w-full' : 'w-0'}`}
                 />
               </motion.a>
             ))}
@@ -131,13 +168,7 @@ export default function Header() {
             >
               <div className="mt-4 pb-4 border-t border-gray-200 pt-4">
                 <nav className="flex flex-col gap-4">
-                  {[
-                    { href: '#features', label: 'Funcionalidades' },
-                    { href: '#how-it-works', label: 'Cómo Funciona' },
-                    { href: '#testimonios', label: 'Testimonios' },
-                    { href: '#nosotros', label: 'Nosotros' },
-                    { href: '#contact', label: 'Contacto' },
-                  ].map((item) => (
+                  {navLinks.map((item) => (
                     <motion.a
                       key={item.href}
                       href={item.href}

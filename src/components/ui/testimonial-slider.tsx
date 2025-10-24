@@ -12,17 +12,78 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
-  { id: 1, quote: "Impressed by the professionalism and attention to detail.", name: "Guy Hawkins", username: "@guyhawkins", avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
-  { id: 2, quote: "A seamless experience from start to finish. Highly recommend!", name: "Karla Lynn", username: "@karlalynn8", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
-  { id: 3, quote: "Reliable and trustworthy. Made my life so much easier!", name: "Jane Cooper", username: "@janecooper", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
-  { id: 4, quote: "The level of service exceeded my expectations. Will definitely come back.", name: "Robert Chen", username: "@robertchen", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
-  { id: 5, quote: "An innovative approach that truly solved my problems.", name: "Sarah Miller", username: "@sarahmiller", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" },
-  { id: 6, quote: "The team was incredibly responsive and helpful.", name: "Michael Brown", username: "@michaelbrown", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHVzZXJ8ZW58MHx8MHx8fDA%3D" },
-  { id: 7, quote: "I'm very satisfied with the results.", name: "Emily Davis", username: "@emilydavis", avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" },
-  { id: 8, quote: "A truly five-star service.", name: "David Wilson", username: "@davidwilson", avatar: "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXJ8ZW58MHx8MHx8fDA%3D" },
-  { id: 9, quote: "I would recommend them to anyone.", name: "Jessica Martinez", username: "@jessicamartinez", avatar: "https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHVzZXJ8ZW58MHx8MHx8fDA%3D" },
-  { id: 10, quote: "The best experience I've had.", name: "Christopher Garcia", username: "@christophergarcia", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHVzZXJ8ZW58MHx8MHx8fDA%3D" },
+  { 
+    id: 1, 
+    quote: "Law AI nos permitió reducir en más del 60% el tiempo dedicado a revisar contratos. Ahora enfocamos nuestros esfuerzos en la estrategia.", 
+    name: "Sofía Torres", 
+    username: "Torres & Asociados", 
+    avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 2, 
+    quote: "Con ELARIS logramos digitalizar toda nuestra biblioteca interna y transformarla en un repositorio inteligente de acceso inmediato.", 
+    name: "Juan García", 
+    username: "NovaLex", 
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 3, 
+    quote: "La integración fue rápida y el soporte impecable. Law AI entiende el flujo real de trabajo en un estudio jurídico.", 
+    name: "Mariana Campos", 
+    username: "Grupo ALV", 
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 4, 
+    quote: "Pasamos de depender de archivos dispersos a tener plantillas estandarizadas y entrenadas con IA. Es como tener un asistente 24/7.", 
+    name: "Rodrigo Mendoza", 
+    username: "LexPrime", 
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 5, 
+    quote: "Law AI cambió por completo la forma en que capacito a mis practicantes. Reciben feedback automático y mejoran más rápido.", 
+    name: "Diego Alarcón", 
+    username: "Practicante Legal", 
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 6, 
+    quote: "Nuestra gestión de conocimiento se transformó. La precisión de las respuestas y la organización son impresionantes.", 
+    name: "Valeria Salazar", 
+    username: "Gerente Legal Corporativa", 
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 7, 
+    quote: "Aprender de casos reales dentro del sistema me ayudó a entender los criterios de mis superiores. Es una capacitación continua.", 
+    name: "Lucía Ramírez", 
+    username: "Asistente Legal Junior", 
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 8, 
+    quote: "Implementar Law AI fue clave en nuestra transformación digital. Es una herramienta que crece junto con el estudio.", 
+    name: "Ana Roca", 
+    username: "LegalTech Partners", 
+    avatar: "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 9, 
+    quote: "Con ELARIS, centralizamos todos nuestros documentos y procesos. La IA entiende perfectamente el contexto legal.", 
+    name: "Carlos Paredes", 
+    username: "Civitas Legal", 
+    avatar: "https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=500&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 10, 
+    quote: "ELARIS combina tecnología e inteligencia jurídica de una forma única. Es el puente entre el conocimiento y la eficiencia.", 
+    name: "Tomás Villanueva", 
+    username: "Consultor en Automatización Legal", 
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=60" 
+  },
 ];
+
 
 const getVisibleCount = (width: number): number => {
   if (width >= 1280) return 3;
@@ -125,10 +186,10 @@ const TestimonialSlider: React.FC = () => {
           className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <span className="inline-block py-1 px-3 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light font-medium text-xs sm:text-sm uppercase tracking-wider">
-            Testimonials
+            Testimonios
           </span>
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 dark:from-primary-light dark:to-primary bg-clip-text text-transparent mt-3 sm:mt-4 px-4">
-            Transformative Student Experiences
+            Construido con confianza, probado por resultados
           </h3>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-primary/70 dark:from-primary-light dark:to-primary mx-auto mt-4 sm:mt-6"></div>
         </motion.div>
