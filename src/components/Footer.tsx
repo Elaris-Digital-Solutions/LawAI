@@ -1,4 +1,4 @@
-import { BookOpen, Mail, MapPin, Phone, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (

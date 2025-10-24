@@ -18,13 +18,19 @@ export default function Header() {
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ['rgba(255, 255, 255, 0)', 'rgba(249, 250, 251, 0.98)']
+    ['rgba(10, 35, 66, 0)', 'rgba(255, 255, 255, 0.98)']
   );
 
   const shadow = useTransform(
     scrollY,
-    [0, 50],
-    ['0 1px 2px 0 rgba(0, 0, 0, 0.05)', '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)']
+    [0, 100],
+    ['0 0 0 0 rgba(0, 0, 0, 0)', '0 4px 20px -2px rgba(0, 0, 0, 0.1)']
+  );
+
+  const backdropBlur = useTransform(
+    scrollY,
+    [0, 100],
+    ['blur(0px)', 'blur(12px)']
   );
 
   const navItemVariants = {
@@ -37,10 +43,9 @@ export default function Header() {
       style={{
         backgroundColor,
         boxShadow: shadow,
+        backdropFilter: backdropBlur,
       }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white text-gray-800 shadow-md" : "bg-transparent text-white"
-      }`}
+      className="fixed top-0 w-full z-50 transition-all duration-500"
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -50,12 +55,12 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <img 
-            src={
-               isScrolled
-                ? "assets/logo-fondo-transparente.png"
-                : "assets/logo-fondo-azul.png"
-              } alt="LawAI Logo" className="h-12 w-auto object-contain transition-all duration-300" />
+            <motion.img 
+              src={isScrolled ? "assets/logo-fondo-transparente.png" : "assets/logo-fondo-azul.png"}
+              alt="LawAI Logo" 
+              className="h-12 w-auto object-contain transition-all duration-500"
+              style={{ filter: isScrolled ? 'none' : 'drop-shadow(0 0 8px rgba(47, 128, 237, 0.3))' }}
+            />
           </motion.div>
 
           <motion.nav
@@ -69,16 +74,21 @@ export default function Header() {
               { href: '#how-it-works', label: 'Cómo Funciona' },
               { href: '#testimonios', label: 'Testimonios' },
               { href: '#nosotros', label: 'Nosotros' },
+              { href: '#contact', label: 'Contacto' },
             ].map((item) => (
               <motion.a
                 key={item.href}
                 href={item.href}
                 variants={navItemVariants}
-                whileHover={{ y: -2, color: '#2F80ED' }}
+                whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
-                className="font-medium"
+                style={{ color: isScrolled ? 'hsl(216, 100%, 12%)' : 'white' }}
+                className="font-medium relative group"
               >
                 {item.label}
+                <motion.span
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"
+                />
               </motion.a>
             ))}
           </motion.nav>
@@ -91,17 +101,9 @@ export default function Header() {
           >
             <motion.button
               variants={navItemVariants}
-              whileHover={{ scale: 1.05, color: '#2F80ED' }}
+              whileHover={{ scale: 1.05, boxShadow: '0 8px 20px rgba(47, 128, 237, 0.4)' }}
               whileTap={{ scale: 0.95 }}
-              className="text-gray-600 font-medium px-4 py-2"
-            >
-              Iniciar Sesión
-            </motion.button>
-            <motion.button
-              variants={navItemVariants}
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#2F80ED] text-white px-6 py-2 rounded-lg font-semibold shadow-md"
+              className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-semibold shadow-lg transition-all duration-300"
             >
               Comenzar
             </motion.button>
@@ -110,7 +112,8 @@ export default function Header() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="md:hidden text-gray-600"
+            style={{ color: isScrolled ? 'hsl(216, 100%, 12%)' : 'white' }}
+            className="md:hidden transition-colors duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -133,6 +136,7 @@ export default function Header() {
                     { href: '#how-it-works', label: 'Cómo Funciona' },
                     { href: '#testimonios', label: 'Testimonios' },
                     { href: '#nosotros', label: 'Nosotros' },
+                    { href: '#contact', label: 'Contacto' },
                   ].map((item) => (
                     <motion.a
                       key={item.href}
@@ -149,18 +153,8 @@ export default function Header() {
                   <motion.button
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.3 }}
-                    className={`font-medium px-4 py-2 transition-colors duration-300 ${
-                      isScrolled ? "text-gray-600" : "text-white"
-                    }`}
-                  >
-                    Iniciar Sesión
-                  </motion.button>
-                  <motion.button
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
-                    className="bg-[#2F80ED] hover:bg-[#2570d9] text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200"
+                    className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 shadow-lg"
                   >
                     Comenzar
                   </motion.button>

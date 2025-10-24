@@ -4,6 +4,7 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
 import Nosotros from './components/Nosotros';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
 
@@ -54,6 +55,7 @@ function App() {
         >
           <Nosotros />
         </motion.div>
+        <Contact />
       </main>
       <Footer />
     </div>
