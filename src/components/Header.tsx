@@ -50,7 +50,12 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <img src="assets/logo-fondo-transparente.png" alt="LawAI Logo" className="h-12 w-auto object-contain" />
+            <img 
+            src={
+               isScrolled
+                ? "assets/logo-fondo-transparente.png"
+                : "assets/logo-fondo-azul.png"
+              } alt="LawAI Logo" className="h-12 w-auto object-contain transition-all duration-300" />
           </motion.div>
 
           <motion.nav
