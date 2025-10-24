@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Github } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -21,6 +21,9 @@ export default function Footer() {
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110">
                 <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="https://github.com/Elaris-Digital-Solutions/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110">
+                <Github className="w-6 h-6" />
               </a>
             </div>
           </div>
@@ -78,28 +81,28 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4">Contacto</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-gray-400">
-                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
-                <span>contacto@lawai.com</span>
+            <h3 class="text-lg font-bold mb-4">Contacto</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3 text-gray-400">
+                <Mail class="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
+                <span>solutions.elaris@gmail.com</span>
               </li>
-              <li className="flex items-start gap-3 text-gray-400">
-                <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
-                <span>+1 (555) 123-4567</span>
+              <li class="flex items-start gap-3 text-gray-400">
+                <Phone class="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
+                <span>+51 987 450 340</span>
               </li>
-              <li className="flex items-start gap-3 text-gray-400">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
-                <span>123 Calle Legal, San Francisco, CA 94105</span>
+              <li class="flex items-start gap-3 text-gray-400">
+                <MapPin class="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
+                <span>Av. Primavera 2390, Santiago de Surco 15023</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-400 text-sm">
-              © 2025 LawAI. Todos los derechos reservados.
+        <div class="border-t border-white/10 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-400 text-sm">
+              © 2025 LawAI. Todos los derechos reservados por Elaris Digital Solutions.
             </div>
             <div className="flex gap-6 text-sm">
               <a href="#privacy" className="text-gray-400 hover:text-[#2F80ED] transition-all duration-300 transform hover:scale-105 inline-block">

@@ -55,7 +55,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden">
+    <section className="relative pt-32 pb-0 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-40">
         <motion.div

@@ -162,6 +162,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
+            {/* Contact Information Card */}
             <div className="glass-effect rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-6">Información de Contacto</h3>
               
@@ -175,8 +176,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Email</p>
-                    <a href="mailto:contacto@lawai.com" className="text-white hover:text-primary transition-colors">
-                      contacto@lawai.com
+                    <a href="mailto:solutions.elaris@gmail.com" className="text-white hover:text-primary transition-colors">
+                      solutions.elaris@gmail.com
                     </a>
                   </div>
                 </motion.div>
@@ -190,8 +191,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Teléfono</p>
-                    <a href="tel:+15551234567" className="text-white hover:text-primary transition-colors">
-                      +1 (555) 123-4567
+                    <a href="tel:+51987450340" className="text-white hover:text-primary transition-colors">
+                      +51 987 450 340
                     </a>
                   </div>
                 </motion.div>
@@ -206,41 +207,29 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Oficina</p>
                     <p className="text-white">
-                      123 Calle Legal<br />
-                      San Francisco, CA 94105
+                      Av. Primavera 2390<br />
+                      Santiago de Surco 15023
                     </p>
                   </div>
                 </motion.div>
               </div>
             </div>
 
+            {/* Google Maps Embed */}
             <div className="glass-effect rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Horario de Atención</h3>
-              <div className="space-y-2 text-gray-300">
-                <p className="flex justify-between">
-                  <span>Lunes - Viernes:</span>
-                  <span className="text-white font-medium">9:00 AM - 6:00 PM</span>
-                </p>
-                <p className="flex justify-between">
-                  <span>Sábados:</span>
-                  <span className="text-white font-medium">10:00 AM - 2:00 PM</span>
-                </p>
-                <p className="flex justify-between">
-                  <span>Domingos:</span>
-                  <span className="text-white font-medium">Cerrado</span>
-                </p>
+              <div className="relative w-full h-[300px] overflow-hidden rounded-xl shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.940961909618!2d-76.9897292!3d-12.1190919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7e41b6d923f%3A0x82eb55b868f8b7e1!2sAv.%20Primavera%202390%2C%20Santiago%20de%20Surco%2015023%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1696633222225!5m2!1ses!2spe"
+                  width="100%"
+                  height="300"
+                  className="rounded-xl"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
-
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="glass-effect rounded-2xl p-8 bg-primary/10"
-            >
-              <p className="text-white text-center">
-                <span className="text-xl font-bold block mb-2">¿Necesita ayuda urgente?</span>
-                <span className="text-gray-300">Nuestro equipo de soporte está disponible 24/7</span>
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </div>
