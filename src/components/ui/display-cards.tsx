@@ -127,27 +127,52 @@ export default function DisplayCards({ cards, stacked = true }: DisplayCardsProp
     );
   }
 
-  // stacked (diagonal) layout descending left-to-right, anchored to the left
+  // stacked (diagonal) layout descending left-to-right, anchored to the left on large screens.
+  // For small screens we render a centered vertical stack so cards are fully visible and
+  // don't get cut off by left padding / absolute positioning.
   return (
-  <div className="cards-container relative w-full h-[640px] mt-6 pl-32 lg:pl-40">
-      {displayCards.map((c, i) => {
-  const left = baseLeft + i * stepX; // increase left offset per index (with baseLeft)
-  const top = baseTop + i * stepY; // move whole stack down and stagger vertically
-  return (
-          <div
-            key={i}
-            className="absolute group"
-            style={{ left: `${left}px`, top: `${top}px`, zIndex: 10 + i }}
-          >
-            {/* static hover zone is this wrapper (group). The inner card will translate on group-hover
-                so the hover area doesn't move with the card (prevents chasing) */}
-            <div className="transform transition-transform duration-300 ease-out group-hover:-translate-y-[130px] group-hover:z-50 group-hover:shadow-2xl">
-              <DisplayCard {...c} showText={i === displayCards.length - 1} />
+    <>
+      {/* Mobile / small screens: centered overlapping cascade */}
+      <div className="lg:hidden relative w-full h-[520px] mt-6">
+        {displayCards.map((c, i) => {
+          const topMobile = 10 + i * 20; // stack each card 20px lower than the previous
+          // zIndex so later cards appear on top
+          const z = displayCards.length - i;
+          return (
+            <div
+              key={i}
+              className="absolute left-1/2"
+              style={{ transform: 'translateX(-50%)', top: `${topMobile}px`, zIndex: 100 + z }}
+            >
+              <div className="transform transition-transform duration-300 ease-out hover:-translate-y-4">
+                <DisplayCard {...c} showText={i === displayCards.length - 1} />
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+
+      {/* Large screens: original diagonal stacked absolute layout */}
+      <div className="hidden lg:block cards-container relative w-full h-[640px] mt-6 pl-32 lg:pl-40">
+        {displayCards.map((c, i) => {
+          const left = baseLeft + i * stepX; // increase left offset per index (with baseLeft)
+          const top = baseTop + i * stepY; // move whole stack down and stagger vertically
+          return (
+            <div
+              key={i}
+              className="absolute group"
+              style={{ left: `${left}px`, top: `${top}px`, zIndex: 10 + i }}
+            >
+              {/* static hover zone is this wrapper (group). The inner card will translate on group-hover
+                  so the hover area doesn't move with the card (prevents chasing) */}
+              <div className="transform transition-transform duration-300 ease-out group-hover:-translate-y-[130px] group-hover:z-50 group-hover:shadow-2xl">
+                <DisplayCard {...c} showText={i === displayCards.length - 1} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 

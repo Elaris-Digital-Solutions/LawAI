@@ -96,7 +96,7 @@ const TestimonialSlider: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-  const [direction, setDirection] = useState(0);
+  // direction state not currently used; removed to satisfy typecheck
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -160,7 +160,7 @@ const TestimonialSlider: React.FC = () => {
     setTimeout(() => setIsAutoPlaying(true), 8000);
   };
 
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_event: any, info: any) => {
     const { offset } = info;
     const swipeThreshold = 30;
 
