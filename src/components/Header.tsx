@@ -1,12 +1,26 @@
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
 
-  const bgOpacity = useTransform(scrollY, [0, 50], [0.95, 1]);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 100],
+    ['rgba(255, 255, 255, 0)', 'rgba(249, 250, 251, 0.98)']
+  );
+
   const shadow = useTransform(
     scrollY,
     [0, 50],
@@ -21,10 +35,12 @@ export default function Header() {
   return (
     <motion.header
       style={{
-        backgroundColor: bgOpacity && `rgba(255, 255, 255, ${bgOpacity.get()})`,
+        backgroundColor,
         boxShadow: shadow,
       }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-gray-200"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white text-gray-800 shadow-md" : "bg-transparent text-white"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -55,7 +71,7 @@ export default function Header() {
                 variants={navItemVariants}
                 whileHover={{ y: -2, color: '#2F80ED' }}
                 transition={{ duration: 0.2 }}
-                className="text-gray-600 font-medium"
+                className="font-medium"
               >
                 {item.label}
               </motion.a>
@@ -129,7 +145,9 @@ export default function Header() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
-                    className="text-gray-600 hover:text-[#2F80ED] transition-colors font-medium text-left"
+                    className={`font-medium px-4 py-2 transition-colors duration-300 ${
+                      isScrolled ? "text-gray-600" : "text-white"
+                    }`}
                   >
                     Iniciar Sesión
                   </motion.button>
