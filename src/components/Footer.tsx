@@ -81,27 +81,27 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 class="text-lg font-bold mb-4">Contacto</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3 text-gray-400">
-                <Mail class="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
+            <h3 className="text-lg font-bold mb-4">Contacto</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-gray-400">
+                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
                 <span>solutions.elaris@gmail.com</span>
               </li>
-              <li class="flex items-start gap-3 text-gray-400">
-                <Phone class="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
+              <li className="flex items-start gap-3 text-gray-400">
+                <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
                 <span>+51 987 450 340</span>
               </li>
-              <li class="flex items-start gap-3 text-gray-400">
-                <MapPin class="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
+              <li className="flex items-start gap-3 text-gray-400">
+                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
                 <span>Av. Primavera 2390, Santiago de Surco 15023</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="border-t border-white/10 pt-8">
-          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-gray-400 text-sm">
+        <div className="border-t border-white/10 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-gray-400 text-sm">
               © 2025 LawAI. Todos los derechos reservados por Elaris Digital Solutions.
             </div>
             <div className="flex gap-6 text-sm">

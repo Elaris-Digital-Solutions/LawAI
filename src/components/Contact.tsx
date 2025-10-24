@@ -54,14 +54,14 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-effect rounded-2xl p-8 md:p-10"
+            className="flex-1 glass-effect rounded-2xl p-8 md:p-10"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -154,13 +154,13 @@ export default function Contact() {
             </form>
           </motion.div>
 
-          {/* Contact Information */}
+          {/* Contact Information and Map Column */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="flex-1 flex flex-col gap-8"
           >
             {/* Contact Information Card */}
             <div className="glass-effect rounded-2xl p-8">
@@ -216,19 +216,16 @@ export default function Contact() {
             </div>
 
             {/* Google Maps Embed */}
-            <div className="glass-effect rounded-2xl p-8">
-              <div className="relative w-full h-[300px] overflow-hidden rounded-xl shadow-lg">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.940961909618!2d-76.9897292!3d-12.1190919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7e41b6d923f%3A0x82eb55b868f8b7e1!2sAv.%20Primavera%202390%2C%20Santiago%20de%20Surco%2015023%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1696633222225!5m2!1ses!2spe"
-                  width="100%"
-                  height="300"
-                  className="rounded-xl"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+            <div className="rounded-xl shadow-md overflow-hidden h-[300px]">
+              <iframe
+                src="https://www.google.com/maps?q=Avenida%20Primavera%202390%2C%20Santiago%20de%20Surco%2C%20Lima%2C%20Per%C3%BA&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </motion.div>
         </div>
