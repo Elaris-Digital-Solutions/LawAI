@@ -1,13 +1,36 @@
 import { Sparkles, Zap, Shield } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import DisplayCards from './ui/display-cards';
+import { useState, useEffect } from 'react';
 
 export default function Hero() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 300], [0, 150]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.8]);
+
+  // State to track if the screen is mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    
+    // Check on initial render
+    checkScreenSize();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkScreenSize);
+    
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Responsive scroll range for animations
+  const animationRange = isMobile ? [0, 1800] : [0, 600];
+
+  const y1 = useTransform(scrollY, animationRange, [0, 150]);
+  const y2 = useTransform(scrollY, animationRange, [0, -100]);
+  const opacity = useTransform(scrollY, animationRange, isMobile ? [1, 1] : [1, 0]);
+  const scale = useTransform(scrollY, animationRange, isMobile ? [1, 1] : [1, 0.8]);
   
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
   const y1Spring = useSpring(y1, springConfig);
@@ -85,7 +108,7 @@ export default function Hero() {
       <motion.div 
         style={{ opacity, scale }}
         // reduce top padding so hero sits directly under the fixed header at initial load
-        className="max-w-7xl mx-auto px-6 pt-4 md:pt-10 pb-24 md:pb-32 relative z-10"
+        className="max-w-7xl mx-auto px-6 pt-28 md:pt-10 pb-24 md:pb-32 relative z-10"
       >
         <motion.div
           className="grid lg:grid-cols-2 gap-12 items-center"
@@ -110,7 +133,7 @@ export default function Hero() {
 
             <motion.h1 
               variants={itemVariants}
-              className="text-5xl md:text-7xl font-bold leading-loose"
+              className="text-4xl md:text-7xl font-bold leading-tight md:leading-loose"
             >
               <span className="block">Revoluciona tu</span>
               <span className="block bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent animate-gradient-x pb-4">

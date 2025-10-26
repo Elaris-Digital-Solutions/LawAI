@@ -1,7 +1,6 @@
-
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Sparkles,
@@ -13,6 +12,7 @@ import {
   Bot,
   BarChart3,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface DisplayCardProps {
   className?: string;
@@ -20,6 +20,7 @@ interface DisplayCardProps {
   title?: string;
   description?: string;
   titleClassName?: string;
+  cardIndex?: number; // Índice para mostrar el número de la tarjeta
 }
 
 function DisplayCard({
@@ -29,6 +30,7 @@ function DisplayCard({
   description = "Card description goes here.",
   titleClassName = "text-blue-600",
   showText = false,
+  cardIndex,
 }: DisplayCardProps & { showText?: boolean }) {
   return (
     <div
@@ -44,6 +46,12 @@ function DisplayCard({
         </div>
         <p className={cn("text-sm text-black/80 leading-snug transition-opacity duration-300", showText ? 'opacity-100' : 'opacity-0 group-hover:opacity-100')}>{description}</p>
       </div>
+      {/* Número de tarjeta en círculo */}
+      {cardIndex !== undefined && (
+        <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full bg-blue-900/5 flex items-center justify-center">
+          <span className="text-xs font-medium text-blue-500">{cardIndex + 1}</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -54,6 +62,9 @@ interface DisplayCardsProps {
 }
 
 export default function DisplayCards({ cards, stacked = true }: DisplayCardsProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  
   // default data (7 cards) if none provided
   const defaultCards: DisplayCardProps[] = [
     {
@@ -107,14 +118,54 @@ export default function DisplayCards({ cards, stacked = true }: DisplayCardsProp
   ];
 
   const displayCards = cards && cards.length === 7 ? cards : defaultCards;
+  const [currentCards, setCurrentCards] = useState<(DisplayCardProps & { originalIndex: number })[]>(
+    displayCards.map((card, idx) => ({ ...card, originalIndex: idx }))
+  );
 
-  // stacking offsets (in px). These produce a diagonal layered layout descending left-to-right.
-  // stepX moves each next card to the right by increasing the left offset. stepY moves each card down.
-  // Make stack more compact horizontally by reducing stepX
-  const stepX = 28; // horizontal shift per card (px) - reduced for compactness
+  // Rotate cards: move active card to the back of the stack
+  const handleCardClick = (index: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+
+    // Update active index and rotate cards
+    setActiveIndex((prev) => (prev + 1) % currentCards.length);
+    
+    setCurrentCards((cards) => {
+      const newCards = [...cards];
+      const [clicked] = newCards.splice(index, 1);
+      newCards.push(clicked);
+      return newCards;
+    });
+
+    // Reset animation lock after transition
+    setTimeout(() => setIsAnimating(false), 300);
+  };
+
+  // Constants for card presentation
+  const CARD_SCALE_STEP = 0.03; // Each card is 3% smaller than the previous
+  const CARD_OFFSET_Y = 20; // Vertical offset between cards (px)
+  const MAX_CARDS_VISIBLE = 5; // Show only top 5 cards in stack
+  
+  // Card appearance calculations based on position in stack
+  const getCardStyle = (index: number) => {
+    const positionFromTop = index;
+    const scale = 1 - positionFromTop * CARD_SCALE_STEP;
+    const y = positionFromTop * CARD_OFFSET_Y;
+    const opacity = index < MAX_CARDS_VISIBLE ? 1 : 0;
+    
+    return {
+      scale,
+      y,
+      opacity,
+      zIndex: 1000 - index, // Higher cards in visual stack have higher z-index
+    };
+  };
+
+  // Desktop layout constants
+  const stepX = 28; // horizontal shift per card (px)
   const stepY = 24; // vertical shift per card (px)
-  const baseTop = 140; // base vertical offset to place the whole stack lower so hover doesn't overlap navbar
-  const baseLeft = 80; // additional left offset to push the whole stack further to the right
+  const baseTop = 140; // base vertical offset
+  const baseLeft = 80; // additional left offset
 
   // If stacked === false, render a plain responsive grid (useful for demos or mobile).
   if (!stacked) {
@@ -132,29 +183,43 @@ export default function DisplayCards({ cards, stacked = true }: DisplayCardsProp
   // don't get cut off by left padding / absolute positioning.
   return (
     <>
-      {/* Mobile / small screens: centered overlapping cascade */}
-      <div className="lg:hidden relative w-full h-[520px] mt-6">
-        {displayCards.map((c, i) => {
-          const topMobile = 10 + i * 20; // stack each card 20px lower than the previous
-          // zIndex so later cards appear on top
-          const z = displayCards.length - i;
-          return (
-            <div
-              key={i}
-              className="absolute left-1/2"
-              style={{ transform: 'translateX(-50%)', top: `${topMobile}px`, zIndex: 100 + z }}
-            >
-              <div className="transform transition-transform duration-300 ease-out hover:-translate-y-4">
-                <DisplayCard {...c} showText={i === displayCards.length - 1} />
-              </div>
-            </div>
-          );
-        })}
+      {/* Mobile: Continuous carousel stack */}
+      <div className="lg:hidden w-full flex flex-col items-center space-y-4 mt-8">
+        <div className="relative h-[450px] w-[20rem]">
+          <AnimatePresence mode="popLayout">
+            {currentCards.slice(0, MAX_CARDS_VISIBLE).map((card, index) => {
+              const style = getCardStyle(index);
+              return (
+                <motion.div
+                  key={card.title}
+                  className="absolute w-full cursor-pointer origin-top"
+                  initial={style}
+                  animate={style}
+                  exit={{ scale: 0.5, y: -100, opacity: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                    mass: 1,
+                  }}
+                  onClick={() => !isAnimating && handleCardClick(index)}
+                  whileHover={{ scale: style.scale + 0.02 }}
+                  style={{ 
+                    zIndex: style.zIndex,
+                    transformOrigin: "center top"
+                  }}
+                >
+                  <DisplayCard {...card} showText={index === 0} cardIndex={card.originalIndex} />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Large screens: original diagonal stacked absolute layout */}
       <div className="hidden lg:block cards-container relative w-full h-[640px] mt-6 pl-32 lg:pl-40">
-        {displayCards.map((c, i) => {
+        {displayCards.map((c: DisplayCardProps, i: number) => {
           const left = baseLeft + i * stepX; // increase left offset per index (with baseLeft)
           const top = baseTop + i * stepY; // move whole stack down and stagger vertically
           return (
@@ -166,7 +231,7 @@ export default function DisplayCards({ cards, stacked = true }: DisplayCardsProp
               {/* static hover zone is this wrapper (group). The inner card will translate on group-hover
                   so the hover area doesn't move with the card (prevents chasing) */}
               <div className="transform transition-transform duration-300 ease-out group-hover:-translate-y-[130px] group-hover:z-50 group-hover:shadow-2xl">
-                <DisplayCard {...c} showText={i === displayCards.length - 1} />
+                <DisplayCard {...c} showText={i === displayCards.length - 1} cardIndex={c.originalIndex} />
               </div>
             </div>
           );
@@ -175,4 +240,3 @@ export default function DisplayCards({ cards, stacked = true }: DisplayCardsProp
     </>
   );
 }
-
