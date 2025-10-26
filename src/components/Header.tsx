@@ -90,7 +90,7 @@ export default function Header() {
       }}
       className="fixed top-0 w-full z-50 transition-all duration-500"
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

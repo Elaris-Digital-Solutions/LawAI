@@ -108,7 +108,7 @@ export default function Hero() {
       <motion.div 
         style={{ opacity, scale }}
         // reduce top padding so hero sits directly under the fixed header at initial load
-        className="max-w-7xl mx-auto px-6 pt-28 md:pt-10 pb-24 md:pb-32 relative z-10"
+        className="max-w-7xl mx-auto px-6 pt-28 md:pt-36 pb-24 md:pb-32 relative z-10"
       >
         <motion.div
           className="grid lg:grid-cols-2 gap-12 items-center"
