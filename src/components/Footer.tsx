@@ -85,7 +85,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
-                <span>solutions.elaris@gmail.com</span>
+                <span>contact@elarisdigitalsolutions.com</span>
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#2F80ED]" />
