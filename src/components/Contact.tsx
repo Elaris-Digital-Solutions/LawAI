@@ -30,7 +30,7 @@ export default function Contact() {
       payload.append('_template', 'table');
 
       // Uses FormSubmit to deliver messages to contact@elarisdigitalsolutions.com without a custom backend.
-      const response = await fetch('https://formsubmit.co/ajax/contact@elarisdigitalsolutions.com', {
+      const response = await fetch('https://formsubmit.co/ajax/solutions.elaris@gmail.com', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: payload,
@@ -238,8 +238,7 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Oficina</p>
                     <p className="text-white">
-                      Av. Primavera 2390<br />
-                      Santiago de Surco 15023
+                      Jirón Jerónimo de Aliaga Norte 595
                     </p>
                   </div>
                 </motion.div>
@@ -249,7 +248,7 @@ export default function Contact() {
             {/* Google Maps Embed */}
             <div className="rounded-xl shadow-md overflow-hidden h-[300px]">
               <iframe
-                src="https://www.google.com/maps?q=Avenida%20Primavera%202390%2C%20Santiago%20de%20Surco%2C%20Lima%2C%20Per%C3%BA&output=embed"
+                src="https://www.google.com/maps?q=Jir%C3%B3n%20Jer%C3%B3nimo%20de%20Aliaga%20Norte%20595%2C%20Lima%2C%20Per%C3%BA&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
