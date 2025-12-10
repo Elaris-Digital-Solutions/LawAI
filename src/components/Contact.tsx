@@ -89,6 +89,7 @@ export default function Contact() {
             className="flex-1 glass-effect rounded-2xl p-8 md:p-10"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              <input type="hidden" name="_verify" value="true"></input>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
                   Nombre Completo *
