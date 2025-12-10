@@ -19,7 +19,13 @@ export default function Footer() {
               <a href="#" className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110">
+              <a
+                href="https://www.linkedin.com/company/elaris-digital-solutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Elaris Digital Solutions on LinkedIn"
+                className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
+              >
                 <Linkedin className="w-6 h-6" />
               </a>
               <a href="https://github.com/Elaris-Digital-Solutions/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110">
