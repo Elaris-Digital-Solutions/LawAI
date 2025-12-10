@@ -99,8 +99,8 @@ export default function Header() {
             className="flex items-center"
           >
             <motion.img 
-              src={isScrolled ? "assets/logo-fondo-transparente.png" : "assets/logo-fondo-azul.png"}
-              alt="LawAI Logo" 
+              src="assets/LeIA.png"
+              alt="LeIA Logo" 
               className={`w-auto object-contain transition-all duration-500 ${isScrolled ? 'h-12' : 'h-14'}`}
               style={{ filter: isScrolled ? 'none' : 'drop-shadow(0 0 8px rgba(47, 128, 237, 0.3))' }}
             />
