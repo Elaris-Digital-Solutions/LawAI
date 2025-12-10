@@ -11,19 +11,44 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', company: '', message: '' });
-    
-    setTimeout(() => setSubmitted(false), 3000);
+    setSubmitError(null);
+    setSubmitted(false);
+
+    try {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('company', formData.company);
+      payload.append('message', formData.message);
+      payload.append('_subject', 'Nuevo mensaje desde LawAI');
+      payload.append('_captcha', 'false');
+      payload.append('_template', 'table');
+
+      // Uses FormSubmit to deliver messages to contact@elarisdigitalsolutions.com without a custom backend.
+      const response = await fetch('https://formsubmit.co/ajax/contact@elarisdigitalsolutions.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: payload,
+      });
+
+      const result = await response.json();
+      if (!response.ok || result?.success !== 'true') {
+        throw new Error(result?.message || 'No pudimos enviar tu mensaje, inténtalo nuevamente.');
+      }
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', company: '', message: '' });
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Ocurrió un error inesperado.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -151,6 +176,12 @@ export default function Contact() {
                   </>
                 )}
               </motion.button>
+
+              {submitError && (
+                <p className="text-sm text-red-300 bg-red-900/40 border border-red-500/30 rounded-lg px-4 py-3">
+                  {submitError}
+                </p>
+              )}
             </form>
           </motion.div>
 
@@ -176,8 +207,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Email</p>
-                    <a href="mailto:solutions.elaris@gmail.com" className="text-white hover:text-primary transition-colors">
-                      solutions.elaris@gmail.com
+                    <a href="mailto:contact@elarisdigitalsolutions.com" className="text-white hover:text-primary transition-colors">
+                      contact@elarisdigitalsolutions.com
                     </a>
                   </div>
                 </motion.div>
