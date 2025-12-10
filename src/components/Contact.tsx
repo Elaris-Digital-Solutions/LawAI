@@ -30,7 +30,7 @@ export default function Contact() {
       payload.append('_template', 'table');
 
       // Uses FormSubmit to deliver messages to contact@elarisdigitalsolutions.com without a custom backend.
-      const response = await fetch('https://formsubmit.co/ajax/solutions.elaris@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/contact@elarisdigitalsolutions.com', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: payload,
